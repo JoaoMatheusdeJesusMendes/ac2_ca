@@ -13,14 +13,14 @@ public class Curso {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  
     private Long id;
-		private String nomeCurso;
-		private float media;
-		@Embedded
-		private Professor professor;
-		@Embedded
-		private Materia materia;
-		@Embedded
-		private FinalizouCurso finalizouCurso;
+	private String nomeCurso;
+	private float media;
+	@Embedded
+	private Professor professor;
+	@Embedded
+	private Materia materia;
+	@Embedded
+	private FinalizouCurso finalizouCurso;
 
 	public Curso() {
 	}
@@ -49,14 +49,6 @@ public class Curso {
 		this.nomeCurso = nomeCurso;
 	}
 	
-	public FinalizouCurso getFinalizouCurso() {
-		return finalizouCurso;
-	}
-	
-	public void setFinalizouCurso(FinalizouCurso finalizouCurso) {
-		this.finalizouCurso = finalizouCurso;
-	}
-	
 	public float getMedia() {
 		return media;
 	}
@@ -65,6 +57,28 @@ public class Curso {
 		this.media = media;
 	}
 	
+	public Professor getProfessor() {
+		return professor;
+	}
 	
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	
+	public Materia getMateria() {
+		return materia;
+	}
+	
+	public void setMateria(Materia materia) {
+		this.materia = materia;
+	}
+	
+	public FinalizouCurso getFinalizouCurso() {
+		return finalizouCurso;
+	}
+	
+	public void setFinalizouCurso(FinalizouCurso finalizouCurso) {
+		this.finalizouCurso = finalizouCurso;
+	}
 
 }
