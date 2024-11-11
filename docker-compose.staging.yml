@@ -1,4 +1,4 @@
-version: '3'
+version: '4'
 
 services:
   database:
@@ -10,14 +10,12 @@ services:
       - db-volume:/var/lib/postgresql/data
 
   api:
-    image: joaomatheusdejesusmendes/ac2_ca
+    image: joaomatheusdejesusmendes/ac2_ca:latest
+    networks:
+      - default  # Certifique-se de que está usando a rede adequada
     environment:
-      SPRING_PROFILES_ACTIVE: staging
       DB_HOST: database
     ports:
-      - "8585:8585"
-    depends_on:
-      - database
-
+      - "8686:8585"
 volumes:
   db-volume:
