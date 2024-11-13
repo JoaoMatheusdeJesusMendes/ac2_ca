@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import ac2_ca_project.ac2_ca.dto.UsuarioDTO;
+import ac2_ca_project.ac2_ca.entity.Curso;
 import ac2_ca_project.ac2_ca.entity.Email;
 import ac2_ca_project.ac2_ca.entity.Ra;
 import ac2_ca_project.ac2_ca.entity.Usuario;
@@ -35,17 +36,23 @@ public class UsuarioServiceTest {
     @Test
     void testGetAllUsers() {
         // Configurando dados fictícios
+        Curso curso = new Curso();
+        curso.setId(1L);
+        curso.setNomeCurso("Matemática");
+
         Usuario usuario1 = new Usuario();
         usuario1.setId(1L);
         usuario1.setNome("usuario1");
         usuario1.setEmail(new Email("usuario1@example.com"));
         usuario1.setRa(new Ra("123456"));
-        
+        usuario1.setCurso(curso); // Adiciona o curso
+
         Usuario usuario2 = new Usuario();
         usuario2.setId(2L);
         usuario2.setNome("usuario2");
         usuario2.setEmail(new Email("user2@example.com"));
         usuario2.setRa(new Ra("654321"));
+        usuario2.setCurso(curso); // Adiciona o curso
 
         // Mock do comportamento do repositório
         when(usuarioRepository.findAll()).thenReturn(Arrays.asList(usuario1, usuario2));
@@ -56,7 +63,9 @@ public class UsuarioServiceTest {
         // Verificação dos resultados
         assertEquals(2, usuarios.size());
         assertEquals("usuario1", usuarios.get(0).getNome());
-        assertEquals("user1@example.com", usuarios.get(0).getEmail());
+        assertEquals("usuario1@example.com", usuarios.get(0).getEmail());
         assertEquals("123456", usuarios.get(0).getRa());
+        assertEquals(1L, usuarios.get(0).getCursoId()); // Verifica o ID do curso se isso for relevante
     }
+
 }
