@@ -1,4 +1,4 @@
-package ac2_project.example.ac2_ca;
+package ac2_project.ac2_ca;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package ac2_project.example.ac2_ca.repository.test;
+package ac2_project.ac2_ca.repository.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,7 +8,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import ac2_ca_project.ac2_ca.entity.Email;
 import ac2_ca_project.ac2_ca.entity.Ra;
@@ -17,9 +19,10 @@ import ac2_ca_project.ac2_ca.repository.UsuarioRepository;
 
 
 
-/*@SpringBootTest*/
+@ActiveProfiles("test")
+@DataJpaTest
 public class UsuarioRepositoryTest {
-	/*@Autowired
+	@Autowired
     private UsuarioRepository usuarioRepository;
 
     @Test
@@ -38,6 +41,6 @@ public class UsuarioRepositoryTest {
         Optional<Usuario> retrievedUser = usuarioRepository.findById(usuarioSaved.getId());
         assertTrue(retrievedUser.isPresent());
         assertEquals("testUsuario", retrievedUser.get().getNome());
-   }*/
+   }
 
 }

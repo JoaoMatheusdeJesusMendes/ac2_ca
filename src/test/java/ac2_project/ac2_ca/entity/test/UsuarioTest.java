@@ -1,4 +1,4 @@
-package ac2_project.example.ac2_ca.entity.test;
+package ac2_project.ac2_ca.entity.test;
 
 import org.junit.jupiter.api.Test;
 import ac2_ca_project.ac2_ca.entity.*;

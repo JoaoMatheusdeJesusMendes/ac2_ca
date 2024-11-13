@@ -1,4 +1,4 @@
-package ac2_project.example.ac2_ca.repository.test;
+package ac2_project.ac2_ca.repository.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,7 +8,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import ac2_ca_project.ac2_ca.entity.Curso;
 import ac2_ca_project.ac2_ca.entity.FinalizouCurso;
@@ -16,9 +18,10 @@ import ac2_ca_project.ac2_ca.entity.Materia;
 import ac2_ca_project.ac2_ca.entity.Professor;
 import ac2_ca_project.ac2_ca.repository.CursoRepository;
 
-/*@SpringBootTest*/
+@ActiveProfiles("test")
+@DataJpaTest
 public class CursoRepositoryTest {
-	/*@Autowired
+	@Autowired
     private CursoRepository cursoRepository;
 
     @Test
@@ -39,5 +42,5 @@ public class CursoRepositoryTest {
         Optional<Curso> retrievedUser = cursoRepository.findById(savedCurso.getId());
         assertTrue(retrievedUser.isPresent());
         assertEquals("testCurso", retrievedUser.get().getNomeCurso());
-   }*/
+   }
 }
