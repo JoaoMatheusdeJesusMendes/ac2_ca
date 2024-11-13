@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -19,6 +20,7 @@ import ac2_ca_project.ac2_ca.dto.CursoDTO;
 import ac2_ca_project.ac2_ca.service.CursoService;
 
 @WebMvcTest(CursoController.class) // Carrega apenas o contexto da camada web
+@ContextConfiguration(classes = {CursoController.class, CursoService.class})
 public class CursoControllerTest {
     @Autowired
     private MockMvc mockMvc;
