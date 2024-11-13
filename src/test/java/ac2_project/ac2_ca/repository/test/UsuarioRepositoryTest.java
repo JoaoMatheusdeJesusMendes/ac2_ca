@@ -10,13 +10,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 
+import ac2_ca_project.ac2_ca.Ac2CaApplication;
 import ac2_ca_project.ac2_ca.entity.Email;
 import ac2_ca_project.ac2_ca.entity.Ra;
 import ac2_ca_project.ac2_ca.entity.Usuario;
 import ac2_ca_project.ac2_ca.repository.UsuarioRepository;
 
 @ActiveProfiles("test")
+@ContextConfiguration(classes = Ac2CaApplication.class)
 @DataJpaTest
 public class UsuarioRepositoryTest {
 
