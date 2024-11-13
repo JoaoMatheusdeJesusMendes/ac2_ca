@@ -35,7 +35,6 @@ public class UsuarioServiceTest {
 
     @Test
     void testGetAllUsers() {
-        // Configurando dados fictícios
         Curso curso = new Curso();
         curso.setId(1L);
         curso.setNomeCurso("Matemática");
@@ -45,27 +44,24 @@ public class UsuarioServiceTest {
         usuario1.setNome("usuario1");
         usuario1.setEmail(new Email("usuario1@example.com"));
         usuario1.setRa(new Ra("123456"));
-        usuario1.setCurso(curso); // Adiciona o curso
+        usuario1.setCurso(curso);
 
         Usuario usuario2 = new Usuario();
         usuario2.setId(2L);
         usuario2.setNome("usuario2");
         usuario2.setEmail(new Email("user2@example.com"));
         usuario2.setRa(new Ra("654321"));
-        usuario2.setCurso(curso); // Adiciona o curso
+        usuario2.setCurso(curso);
 
-        // Mock do comportamento do repositório
         when(usuarioRepository.findAll()).thenReturn(Arrays.asList(usuario1, usuario2));
 
-        // Chamada ao método de serviço
         List<UsuarioDTO> usuarios = usuarioService.listarTodos();
 
-        // Verificação dos resultados
         assertEquals(2, usuarios.size());
         assertEquals("usuario1", usuarios.get(0).getNome());
         assertEquals("usuario1@example.com", usuarios.get(0).getEmail());
         assertEquals("123456", usuarios.get(0).getRa());
-        assertEquals(1L, usuarios.get(0).getCursoId()); // Verifica o ID do curso se isso for relevante
+        assertEquals(1L, usuarios.get(0).getCursoId());
     }
 
 }

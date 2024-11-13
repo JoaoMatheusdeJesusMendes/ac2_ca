@@ -21,7 +21,7 @@ import ac2_ca_project.ac2_ca.repository.CursoRepository;
 
 @ActiveProfiles("test")
 @ContextConfiguration(classes = Ac2CaApplication.class)
-@DataJpaTest // Esta anotação é suficiente para testes de repositórios
+@DataJpaTest
 public class CursoRepositoryTest {
 
     @Autowired
@@ -29,23 +29,19 @@ public class CursoRepositoryTest {
 
     @Test
     void testSaveAndFindCurso() {
-        // Criação de entidades auxiliares (supondo que são entidades JPA)
         Materia materia = new Materia("testMateria");
         Professor professor = new Professor("testProfessor");
         FinalizouCurso finalizouCurso = new FinalizouCurso(true);
 
-        // Criação do curso
         Curso curso = new Curso();
         curso.setNomeCurso("testCurso");
         curso.setMateria(materia);
         curso.setProfessor(professor);
         curso.setFinalizouCurso(finalizouCurso);
 
-        // Salva o curso no banco de dados
         Curso savedCurso = cursoRepository.save(curso);
-        assertNotNull(savedCurso.getId());  // Verifica se o ID foi gerado
+        assertNotNull(savedCurso.getId());
 
-        // Busca o curso pelo ID
         Optional<Curso> retrievedCurso = cursoRepository.findById(savedCurso.getId());
         assertTrue(retrievedCurso.isPresent());
         assertEquals("testCurso", retrievedCurso.get().getNomeCurso());

@@ -12,7 +12,7 @@ services:
   api:
     image: joaomatheusdejesusmendes/ac2_ca:latest
     networks:
-      - default  # Certifique-se de que está usando a rede adequada
+      - default 
     environment:
       DB_HOST: database
     ports:

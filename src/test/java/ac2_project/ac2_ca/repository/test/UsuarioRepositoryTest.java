@@ -28,17 +28,14 @@ public class UsuarioRepositoryTest {
 
     @Test
     void testSaveAndFindUsuarioWithRaAndEmail() {
-        // Cria um objeto Usuario com um Ra e Email válidos
         Usuario usuario = new Usuario();
         usuario.setNome("testUsuario");
         usuario.setRa(new Ra("123456"));
         usuario.setEmail(new Email("test@example.com"));
 
-        // Salva no banco de dados
         Usuario usuarioSaved = usuarioRepository.save(usuario);
         assertNotNull(usuarioSaved.getId(), "O ID do usuário salvo deve ser gerado.");
 
-        // Busca o usuário pelo ID
         Optional<Usuario> retrievedUser = usuarioRepository.findById(usuarioSaved.getId());
         assertTrue(retrievedUser.isPresent(), "O usuário deve estar presente no banco de dados.");
         assertEquals("testUsuario", retrievedUser.get().getNome());

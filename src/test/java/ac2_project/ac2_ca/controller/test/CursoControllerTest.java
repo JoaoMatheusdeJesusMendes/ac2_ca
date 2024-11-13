@@ -26,11 +26,10 @@ public class CursoControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CursoService cursoService; // Injeta um mock do serviço, substituindo a necessidade do repositório
+    private CursoService cursoService;
 
     @Test
     public void testGetUsers() throws Exception {
-        // Configura o comportamento do mock para o método de serviço
         CursoDTO mockCurso = new CursoDTO();
         mockCurso.setId(1L);
         mockCurso.setNomeCurso("Matematica");
@@ -41,7 +40,6 @@ public class CursoControllerTest {
         List<CursoDTO> mockCursos = List.of(mockCurso);
         Mockito.when(cursoService.listarTodos()).thenReturn(mockCursos);
 
-        // Realiza a requisição e verifica a resposta
         mockMvc.perform(MockMvcRequestBuilders.get("/cursos")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

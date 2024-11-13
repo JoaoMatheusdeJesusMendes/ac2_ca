@@ -35,7 +35,6 @@ public class CursoServiceTest {
 
     @Test
     void testGetAllUsers() {
-        // Configurando dados fictícios
         Curso curso1 = new Curso();
         curso1.setId(1L);
         curso1.setNomeCurso("curso1");
@@ -50,13 +49,10 @@ public class CursoServiceTest {
         curso2.setMateria(new Materia("Geografia"));
         curso2.setFinalizouCurso(new FinalizouCurso(false));
 
-        // Mock do comportamento do repositório
         when(cursoRepository.findAll()).thenReturn(Arrays.asList(curso1, curso2));
 
-        // Chamada ao método de serviço
         List<CursoDTO> cursos = cursoService.listarTodos();
 
-        // Verificação dos resultados
         assertEquals(2, cursos.size());
         assertEquals("curso1", cursos.get(0).getNomeCurso());
         assertEquals("Fernando", cursos.get(0).getProfessor());
