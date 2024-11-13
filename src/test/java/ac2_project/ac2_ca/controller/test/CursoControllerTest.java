@@ -40,10 +40,10 @@ public class CursoControllerTest {
         Mockito.when(cursoService.listarTodos()).thenReturn(mockCursos);
 
         // Realiza a requisição e verifica a resposta
-        mockMvc.perform(MockMvcRequestBuilders.get("/cursos") // Corrige o caminho da URL
+        mockMvc.perform(MockMvcRequestBuilders.get("/cursos")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nomecurso").value("JohnDoe")) // Corrige o nome do campo
+                .andExpect(jsonPath("$[0].nomeCurso").value("Matematica"))
                 .andExpect(jsonPath("$[0].professor").value("Fernando"))
                 .andExpect(jsonPath("$[0].materia").value("Matematica"))
                 .andExpect(jsonPath("$[0].finalizouCurso").value(true));

@@ -18,17 +18,16 @@ import ac2_ca_project.ac2_ca.controller.UsuarioController;
 import ac2_ca_project.ac2_ca.dto.UsuarioDTO;
 import ac2_ca_project.ac2_ca.service.UsuarioService;
 
-@WebMvcTest(UsuarioController.class) // Carrega apenas o contexto da camada web
+@WebMvcTest(UsuarioController.class)
 public class UsuarioControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UsuarioService usuarioService; // Injeta um mock do serviço, substituindo a necessidade do repositório
+    private UsuarioService usuarioService;
 
     @Test
     public void testGetUsers() throws Exception {
-        // Configura o comportamento do mock para o método de serviço
         UsuarioDTO mockUsuario = new UsuarioDTO();
         mockUsuario.setId(1L);
         mockUsuario.setNome("JohnDoe");
@@ -38,12 +37,12 @@ public class UsuarioControllerTest {
         List<UsuarioDTO> mockUsuarios = List.of(mockUsuario);
         Mockito.when(usuarioService.listarTodos()).thenReturn(mockUsuarios);
 
-        // Realiza a requisição e verifica a resposta
-        mockMvc.perform(MockMvcRequestBuilders.get("/usuarios") // Corrige o caminho da URL
+        mockMvc.perform(MockMvcRequestBuilders.get("/usuarios")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nome").value("JohnDoe")) // Corrige o nome do campo
+                .andExpect(jsonPath("$[0].nome").value("JohnDoe"))
                 .andExpect(jsonPath("$[0].email").value("john@example.com"))
                 .andExpect(jsonPath("$[0].ra").value("123456"));
     }
 }
+

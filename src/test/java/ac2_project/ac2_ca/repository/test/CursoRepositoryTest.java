@@ -9,7 +9,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import ac2_ca_project.ac2_ca.entity.Curso;
@@ -19,28 +18,34 @@ import ac2_ca_project.ac2_ca.entity.Professor;
 import ac2_ca_project.ac2_ca.repository.CursoRepository;
 
 @ActiveProfiles("test")
-@DataJpaTest
+@DataJpaTest // Esta anotação é suficiente para testes de repositórios
 public class CursoRepositoryTest {
-	@Autowired
+
+    @Autowired
     private CursoRepository cursoRepository;
 
     @Test
-    void testSaveAndFindUser() {
-        //Cria um objeto User com um email válido
+    void testSaveAndFindCurso() {
+        // Criação de entidades auxiliares (supondo que são entidades JPA)
+        Materia materia = new Materia("testMateria");
+        Professor professor = new Professor("testProfessor");
+        FinalizouCurso finalizouCurso = new FinalizouCurso(true);
+
+        // Criação do curso
         Curso curso = new Curso();
         curso.setNomeCurso("testCurso");
-        curso.setMateria(new Materia("testMateria"));
-        curso.setProfessor(new Professor("testProfessor"));
-        curso.setMateria(new Materia("testMateria"));
-        curso.setFinalizouCurso(new FinalizouCurso(true));
-        
-         //Salva no banco de dados
-         Curso savedCurso = cursoRepository.save(curso);
+        curso.setMateria(materia);
+        curso.setProfessor(professor);
+        curso.setFinalizouCurso(finalizouCurso);
+
+        // Salva o curso no banco de dados
+        Curso savedCurso = cursoRepository.save(curso);
         assertNotNull(savedCurso.getId());  // Verifica se o ID foi gerado
 
-        // Busca o usuário pelo ID
-        Optional<Curso> retrievedUser = cursoRepository.findById(savedCurso.getId());
-        assertTrue(retrievedUser.isPresent());
-        assertEquals("testCurso", retrievedUser.get().getNomeCurso());
-   }
+        // Busca o curso pelo ID
+        Optional<Curso> retrievedCurso = cursoRepository.findById(savedCurso.getId());
+        assertTrue(retrievedCurso.isPresent());
+        assertEquals("testCurso", retrievedCurso.get().getNomeCurso());
+    }
 }
+
